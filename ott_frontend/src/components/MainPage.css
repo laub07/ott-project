@@ -1,0 +1,440 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+:root {
+    /** 색상 **/
+    --baseColor: #333;
+    --blueColor: #22aee5;
+    --customColor: #5f8adb;
+    /** 사이즈 **/
+    --baseContainer: 79.375rem; /*1270px*/
+}
+
+html { /* 폰트 크기 */
+    font-size: 16px;
+}
+
+body {
+    font-size: 1.1rem;
+    font-family: 'NanumSquare', sans-serif;
+    color: var(--baseColor);
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: var(--baseColor);
+}
+
+.container {
+  width: 100%;             /* 전체 너비로 확장 */
+  margin: 0;               /* 중앙 정렬 제거 */
+  padding: 0rem 0rem; /* 좌우 패딩 살짝만 줘도 OK */
+  display: flex;
+  align-items: center;
+}
+
+
+header {
+    /* 헤더 고정 위치 및 배경 */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgb(255 255 255);
+    z-index: 10; /* 헤더가 사이드바 위에 표시되도록 z-index 추가 */
+    border-bottom: 1px solid #ccc;
+}
+
+header img { /* 로고 크기ㅍ */
+    width: 6rem;
+}
+
+header h1 {
+    position: absolute;
+    left: -2000px;
+}
+
+.image{
+    width: 1px;
+    height: 1px;
+    object-fit: cover;
+}
+
+.menu-button {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 1.5rem; /* 로고와의 간격을 줄이기 위해 margin 조정 */
+}
+
+.menu-button:hover {
+    color: var(--customColor); /* 메뉴 버튼에 호버 효과 추가 */
+}
+
+header nav {
+    margin-left: auto; /* nav를 오른쪽으로 밀기 */
+}
+
+
+header nav ul li.profile {
+  display: flex;
+  align-items:left;
+  gap: 8px;
+  width: auto;
+  padding-right: 16px; /* 오른쪽 여백 추가 */
+  margin-right: 60px
+}
+
+
+img.profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0;        /* 수정 */
+  vertical-align: middle;
+}
+
+
+header nav {
+    margin-left: auto; /* nav 전체를 오른쪽 끝으로 밀어냄 */
+}
+
+
+header nav ul {
+    /* li 요소들 수평으로 정렬 */
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header nav ul li {
+    padding: 0 3px;
+    width: 100px;
+    position: relative;
+}
+
+header nav ul li a {  /* 상태바 */
+    position: relative;
+    display: inline-block;
+    line-height: 5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+header nav ul li.active a,
+header nav ul li:hover a {
+    color: var(--customColor);
+    top: 2px
+}
+
+header nav ul li a:after {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--customColor);
+    left: 0;
+    bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+header nav ul li.active a:after,
+header nav ul li:hover a:after {
+    opacity: 1;
+}
+
+.profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 4.5rem;
+  right: 0;
+  width: 150px;
+  background-color: #eceff4;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.profile-dropdown .profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.profile-dropdown .profile-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-dropdown .sub {
+  font-size: 0.6rem;
+  color: #000;
+  padding-top:0.3rem;
+}
+
+.profile-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+}
+
+.profile-dropdown ul li {
+  padding: 6px 0;
+  /* border-top: 1px solid #333; */
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: #333;/* 진한 회색으로 변경 */
+  font-weight: bold;  /* ← 폰트 두껍게 */
+}
+
+.profile-dropdown ul li:hover {
+  background-color: #dbe2ea;
+}
+
+
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* 슬라이딩 사이드바를 페이지 왼쪽 밖으로 */
+    width: 250px;
+    height: 100%;
+    background-color: #eceff4;
+    color: rgb(255, 255, 255);
+    transition: left 0.3s ease-in-out;
+    z-index: 9; /* 헤더보다 뒤에 표시되도록 z-index 추가 */
+    padding-top: 115px; /* 헤더 아래에 사이드바 내용이 위치하도록 패딩 추가 */
+    border-right: 1px solid #ccc;
+    display: flex;           /* Flexbox 컨테이너로 변경 */
+    flex-direction: column;
+}
+
+.sidebar.open {
+    left: 0; /* 슬라이딩 사이드바가 왼쪽으로 이동 */
+}
+
+
+.sidebar .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.sidebar ul li { /* pading: (행간) (왼쪽에서부터 떨어져있는 거리) */
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: var(--customColor);
+}
+
+
+.video-list img:hover {
+  transform: scale(1.03);         /* 살짝 확대 */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);  /* 그림자 진하게 */
+}
+
+img.profile-image {
+    width: 40px; /* 원하는 너비로 설정 */
+    height: 40px; /* 높이를 자동으로 조절하여 원본 이미지 비율 유지 */
+    margin-top: 21px; /* 너무 천장에 붙어있어서 내렸음...... */
+    cursor: pointer;
+   }
+
+
+.popularities {
+  margin-left: 0;
+  margin-top: 130px;
+  display: flex;
+  justify-content: center;
+}
+
+.popularities .main-content {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.popularities .main-content img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.recommendations,
+.watching,
+.new-content {
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding: 0 24px; /* ← 왼쪽/오른쪽 여백 추가 */
+      padding: 0 24px  !important;     /* 콘텐츠 섹션 자체에 좌우 여백 */
+      margin-top: 40px;
+    /*
+    margin-left: 280px;
+    margin-top: 50px;
+    */
+}
+
+/*
+hr {
+  margin-left: 0px;
+  width: 100%;
+} */
+
+.horizontal-line {
+    border-top: 1px solid black; /* 수평선 스타일 정의 */
+    margin-top: 20px; /* 필요에 따라 여백 설정 */
+    margin-bottom: 20px; /* 필요에 따라 여백 설정 */
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 16px; /* 이미지 간 간격 */
+  padding: 0 24px; /* ← 여기 좌우 여백 추가 */
+  box-sizing: border-box;
+}
+
+.video-list img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0; /* 줄어들지 않도록 */
+}
+
+
+
+/*********** 사이드바에서 눌렀을 때 ***********/
+/* 스타일을 없애고 패딩과 마진을 제거해 기본설정 초기화 */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 숨겨져 있을때... max-height이 0이어야 숨겨지겠죠? */
+.genres {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* 부드럽게 애니메이션 효과 */
+}
+
+/* show 클래스가 추가되면 max-height를 300px로 설정해 장르 목록이 보이게 */
+.genres.show {
+    max-height: 300px; /* 사이드바에서 메뉴를 클릭했을 때 목록이 출력되는 높이 */
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+/* 사이드바 열렸을 때 스타일 */
+.sidebar.open .geners{
+    overflow: hidden;
+}
+
+.content {
+  padding: 0 1.5rem 2rem 1.5rem;
+  box-sizing: border-box;
+}
+.footer {
+    /* background-color: #141414; */
+    background-color: #e5e8ec;
+    color: black;
+    padding: 20px 30px; /* padding을 절반으로 줄임 */
+    font-size: 10px;     /* 기본 글씨 크기 축소 */
+    margin-top: 60px;
+}
+
+.footer-socials i {
+    margin-right: 10px;   /* 간격 축소 */
+    font-size: 10px;       /* 아이콘 크기 소폭 축소 */
+    cursor: pointer;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* 가운데 정렬 추가 */
+    margin: 20px 0;
+}
+
+
+.footer-links li {
+    margin-right: 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.footer-code-box {
+    margin:8px 0;
+    padding-left: 185px;
+
+}
+
+.service-code {
+    background-color: transparent;
+    border: 1px solid #b3b3b3;
+    color: #b3b3b3;
+    padding: 4px 10px;     /* 버튼 패딩 축소 */
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.footer-info p {
+    margin: 3px 0;
+    line-height: 1.4;       /* 줄 간격 살짝 줄임 */
+    font-size: 9px;
+}
+
+
+
+
+
+

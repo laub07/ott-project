@@ -1,0 +1,91 @@
+
+h1 {
+  text-align: center; /* h1 요소를 중앙 정렬 */
+}
+
+.Category-buttons {
+  display: flex;
+  justify-content: flex-start; /* 버튼들을 왼쪽으로 정렬 */
+  gap: 10px; /* 버튼들 간의 간격 추가 */
+  margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.Category-buttons button {
+  margin-right: 10px; /* 버튼들 사이의 간격 */
+}
+
+.App {
+  text-align: center;
+  background-color: #000; /* 배경색을 검정색으로 설정 */
+}
+
+.Menu {
+  color: white;
+  text-align: left; /* 메뉴 글자들을 왼쪽 정렬 */
+  padding: 0 20px; /* 왼쪽 여백 추가 */
+}
+
+.App-header {
+  background-color: #f80000;
+  padding: 20px;
+  color: rgb(10, 10, 10);
+  text-align: left; /* 헤더 내의 텍스트를 왼쪽 정렬 */
+}
+
+.App-main {
+  margin: 20px;
+  text-align: center; /* 메인 내의 텍스트를 왼쪽 정렬 */
+}
+
+.Featured-content, .Content-list, .New-content {
+  margin-bottom: 40px;
+  display: flex; /* Flexbox 적용 */
+  flex-wrap: wrap; /* 줄 바꿈 허용 */
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  gap: 20px; /* 아이템 간격 */
+}
+
+.Featured-content h2, .Content-list h2, .New-content h2 {
+  width: 100%; /* 제목은 전체 너비 차지 */
+  color: #61dafb;
+  text-align: center; /* 제목을 왼쪽 정렬 */
+  margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.ContentItem {
+  width: calc(20% - 40px); /* 두 개의 아이템이 한 줄에 들어가도록 설정 */
+  margin: 0 10px; /* 좌우 여백 */
+  padding: 5px;
+  border: 1px solid #000000; /* 전체 보더 추가 */
+  box-sizing: border-box; /* 패딩과 보더 포함한 박스 크기 계산 */
+  background-color: #cdc2eb; /* 내용 항목의 배경색을 흰색으로 설정 */
+}
+
+.ContentItem h3 {
+  color: #ffffff; /* 제목 글자 색상을 흰색으로 변경 */
+  text-align: center; /* 제목을 왼쪽 정렬 */
+}
+
+.ContentItem p {
+  color: #666;
+  text-align: center; /* 본문을 왼쪽 정렬 */
+}
+
+.App-footer {
+  background-color: #ff0000;
+  color: white;
+  padding: 3px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center; /* 푸터 내의 텍스트를 왼쪽 정렬 */
+}
+
+/* 반응형 디자인: 화면 너비가 768px 이하일 때 */
+@media (max-width: 768px) {
+  .ContentItem {
+    width: 100%; /* 작은 화면에서는 한 줄에 한 개씩 */
+    margin: 10px 0; /* 좌우 여백 제거 */
+  }
+
+}
