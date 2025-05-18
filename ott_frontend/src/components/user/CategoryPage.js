@@ -4,7 +4,6 @@ import './CategoryPage.css';
 
 const CategoryPage = () => {
     const [categories, setCategories] = useState([]);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showGenres, setShowGenres] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [categoryContent, setCategoryContent] = useState([]);
@@ -185,58 +184,12 @@ const CategoryPage = () => {
         }
     };
 
-    const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
-        setShowGenres(false); // Close genre section when sidebar is closed
-    };
-
     const toggleGenres = () => {
         setShowGenres(!showGenres);
     };
 
     return (
-        <>
-            <header>
-                <div className="container">
-                    <button className="menu-button" onClick={toggleSidebar}>
-                        ☰
-                    </button>
-                    <img src="/images/로고.png" alt="로고" title="로고" />
-                    <nav>
-                        <ul>
-                            <li className="active"><a href="#">홈</a></li>
-                            <li><a href="#">검색</a></li>
-                            <li><a href="#">고객지원</a></li>
-                            <li><a href="#">|</a></li>
-                            <img src="/images/프로필 사진.png" alt="프로필" title="프로필" className="profile-image" />
-                            <li className="profile"><a href="#">프로필 관리</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-                <button className="close-button" onClick={toggleSidebar}>×</button>
-                <ul className="sidebar-list">
-                    <li><a href="#">|　시청기록</a></li>
-                    <li><Link to="/Favorites">|　즐겨찾기 콘텐츠</Link></li>
-                    <li onClick={toggleGenres}><a href="#">|　카테고리별 모아보기</a></li>
-                    <div className={`genres ${showGenres ? 'show' : ''}`}>
-                        <ul>
-                            {categories.map((category) => (
-                                <li key={category.id}>
-                                    <a href="#" onClick={() => fetchCategoryContent(category.id)}>
-                                        {category.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <hr width="85%" align="center"></hr>
-                    <li><a href="#">|　설정</a></li>
-                </ul>
-            </div>
-
-            <div className={`category-page ${sidebarOpen ? 'content-shift' : ''}`}>
+              <div>
                 <h1>카테고리별 모아보기</h1>
                 <div className="category-grid">
                     {categories.map((category) => (
@@ -259,9 +212,8 @@ const CategoryPage = () => {
                                 <div className="content-card" key={index}>
                                     <img
                                         src={content.url}
-                                        title={`YouTube video player ${index}`}
+                                        title={`${index}`}
                                         className="thumbnail-img"
-                                        style={{ width: '180px', height: '260px', objectFit: 'cover' }}
                                         //allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         //allowFullScreen
                                     ></img>
@@ -281,8 +233,9 @@ const CategoryPage = () => {
                                     {category.content.map((content, index) => (
                                         <div className="content-card" key={index}>
                                             <img
-                                                width="180"
-                                                height="260"
+                                                width="150"
+                                                height="220"
+                                                style={{ borderRadius: '8px', objectFit: 'cover' }}
                                                 src={content.url}
                                                 title={`ott ${index}`}
                                                // frameBorder="0"
@@ -298,7 +251,7 @@ const CategoryPage = () => {
                     </div>
                 )}
             </div>
-        </>
+
     );
 };
 

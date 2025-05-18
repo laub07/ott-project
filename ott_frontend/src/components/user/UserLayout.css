@@ -40,6 +40,32 @@ header nav {
     margin-left: auto; /* nav를 오른쪽으로 밀기 */
 }
 
+
+header nav ul li.profile {
+  display: flex;
+  align-items:left;
+  gap: 8px;
+  width: auto;
+  padding-right: 16px; /* 오른쪽 여백 추가 */
+  margin-right: 60px
+}
+
+
+img.profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0;        /* 수정 */
+  vertical-align: middle;
+}
+
+
+header nav {
+    margin-left: auto; /* nav 전체를 오른쪽 끝으로 밀어냄 */
+}
+
+
 header nav ul {
     /* li 요소들 수평으로 정렬 */
     list-style: none;
@@ -86,6 +112,68 @@ header nav ul li.active a:after,
 header nav ul li:hover a:after {
     opacity: 1;
 }
+
+.profile {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 4.5rem;
+  right: 0;
+  width: 150px;
+  background-color: #eceff4;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.profile-dropdown .profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.profile-dropdown .profile-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-dropdown .sub {
+  font-size: 0.6rem;
+  color: #000;
+  padding-top:0.3rem;
+}
+
+.profile-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+}
+
+.profile-dropdown ul li {
+  padding: 6px 0;
+  /* border-top: 1px solid #333; */
+  cursor: pointer;
+  font-size: 0.7rem;
+  color: #333;/* 진한 회색으로 변경 */
+  font-weight: bold;  /* ← 폰트 두껍게 */
+}
+
+.profile-dropdown ul li:hover {
+  background-color: #dbe2ea;
+}
+
+
 
 .sidebar {
     position: fixed;
@@ -140,144 +228,16 @@ header nav ul li:hover a:after {
     color: var(--customColor);
 }
 
+
+.video-list img:hover {
+  transform: scale(1.03);         /* 살짝 확대 */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);  /* 그림자 진하게 */
+}
+
 img.profile-image {
     width: 40px; /* 원하는 너비로 설정 */
     height: 40px; /* 높이를 자동으로 조절하여 원본 이미지 비율 유지 */
     margin-top: 21px; /* 너무 천장에 붙어있어서 내렸음...... */
-}
-
-
-.content-upload-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #eceff4;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.content-upload-page h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.upload-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input[type="text"],
-.form-group textarea,
-.form-group input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    resize: vertical;
-    height: 100px;
-}
-
-button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-}
+   }
 
-button[type="submit"]:disabled {
-    background-color: #ccc;
-}
-
-button[type="submit"]:hover:not(:disabled) {
-    background-color: #0056b3;
-}
-
-p {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 150px;
-    height: 100px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-.modal-content p {
-    margin-bottom: 20px;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.modal-content button:hover {
-    background-color: #0056b3;
-}
-
-.small-input {
-    width: 100px;
-    margin-right: 10px;
-    padding: 4px;
-}
-
-.small-button {
-    padding: 5px 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 12px;
-}
-
-.cast-input {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}

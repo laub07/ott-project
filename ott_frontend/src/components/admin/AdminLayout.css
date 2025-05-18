@@ -1,4 +1,32 @@
-/* 헤더 스타일 */
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+:root {
+    /** 색상 **/
+    --baseColor: #333;
+    --blueColor: #22aee5;
+    --customColor: #5f8adb;
+    /** 사이즈 **/
+    --baseContainer: 79.375rem; /*1270px*/
+}
+
+html { /* 폰트 크기 */
+    font-size: 16px;
+}
+
+body {
+    font-size: 1.1rem;
+    font-family: 'NanumSquare', sans-serif;
+    color: var(--baseColor);
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: var(--baseColor);
+}
+
+
 header {
   position: fixed;
   top: 0;
@@ -190,65 +218,4 @@ header nav ul li.profile {
 /* 사이드바 열렸을 때 스타일 */
 .sidebar.open .geners{
     overflow: hidden;
-}
-
-.video-list-scroll {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 12px;
-  gap: 16px;
-  scroll-behavior: smooth;
-}
-
-.video-list-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-
-.video-list-scroll::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
-}
-
-.video-thumb {
-  position: relative;
-  display: inline-block;
-}
-
-
-
-.video-item {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.video-item img {
-  width: 150px;
-  height: 200px;
-  border-radius: 10px;
-  object-fit: cover;
-  transition: transform 0.2s ease-in-out;
-  display: block;
-}
-
-/* 이미지 호버 시 확대 */
-.video-item:hover img {
-  transform: scale(1.05);
-}
-
-/* 밑줄 기본은 숨김 */
-.video-item::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--customColor); /* 원하는 색상 */
-  transition: width 0.3s ease;
-}
-
-/* 호버 시 밑줄 표시 */
-.video-item:hover::after {
-  width: 100%;
 }

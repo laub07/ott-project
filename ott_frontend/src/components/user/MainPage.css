@@ -1,0 +1,159 @@
+.popularities {
+  margin-left: 0;
+  margin-top: 130px;
+  display: flex;
+  justify-content: center;
+}
+
+.popularities .main-content {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.popularities .main-content img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.recommendations,
+.watching,
+.new-content {
+    margin-left: 0px;
+    margin-top: 40px;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding: 0 24px; /* ← 왼쪽/오른쪽 여백 추가 */
+      padding: 0 24px  !important;     /* 콘텐츠 섹션 자체에 좌우 여백 */
+      margin-top: 40px;
+    /*
+    margin-left: 280px;
+    margin-top: 50px;
+    */
+}
+
+/*
+hr {
+  margin-left: 0px;
+  width: 100%;
+} */
+
+.horizontal-line {
+    border-top: 1px solid black; /* 수평선 스타일 정의 */
+    margin-top: 20px; /* 필요에 따라 여백 설정 */
+    margin-bottom: 20px; /* 필요에 따라 여백 설정 */
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 16px; /* 이미지 간 간격 */
+  padding: 0 24px; /* ← 여기 좌우 여백 추가 */
+  box-sizing: border-box;
+}
+
+.video-list img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0; /* 줄어들지 않도록 */
+}
+
+
+
+/*********** 사이드바에서 눌렀을 때 ***********/
+/* 스타일을 없애고 패딩과 마진을 제거해 기본설정 초기화 */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 숨겨져 있을때... max-height이 0이어야 숨겨지겠죠? */
+.genres {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* 부드럽게 애니메이션 효과 */
+}
+
+/* show 클래스가 추가되면 max-height를 300px로 설정해 장르 목록이 보이게 */
+.genres.show {
+    max-height: 300px; /* 사이드바에서 메뉴를 클릭했을 때 목록이 출력되는 높이 */
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+/* 사이드바 열렸을 때 스타일 */
+.sidebar.open .geners{
+    overflow: hidden;
+}
+
+.content {
+  padding: 0 1.5rem 2rem 1.5rem;
+  box-sizing: border-box;
+}
+.footer {
+    /* background-color: #141414; */
+    background-color: #e5e8ec;
+    color: black;
+    padding: 20px 30px; /* padding을 절반으로 줄임 */
+    font-size: 10px;     /* 기본 글씨 크기 축소 */
+    margin-top: 60px;
+}
+
+.footer-socials i {
+    margin-right: 10px;   /* 간격 축소 */
+    font-size: 10px;       /* 아이콘 크기 소폭 축소 */
+    cursor: pointer;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* 가운데 정렬 추가 */
+    margin: 20px 0;
+}
+
+
+.footer-links li {
+    margin-right: 18px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.footer-code-box {
+    margin:8px 0;
+    padding-left: 185px;
+
+}
+
+.service-code {
+    background-color: transparent;
+    border: 1px solid #b3b3b3;
+    color: #b3b3b3;
+    padding: 4px 10px;     /* 버튼 패딩 축소 */
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.footer-info p {
+    margin: 3px 0;
+    line-height: 1.4;       /* 줄 간격 살짝 줄임 */
+    font-size: 9px;
+}
+
+
+
+
+
+

@@ -1,68 +1,61 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import MainPage from './components/MainPage';
+import React from 'react';
+
+// Layout 컴포넌트
+import UserLayout from './components/user/UserLayout';
+import AdminLayout from './components/admin/AdminLayout';
+
+// 사용자 페이지
+import MainPage from './components/user/MainPage';
+import FavoritesPage from './components/user/FavoritesPage';
+import CategoryPage from './components/user/CategoryPage';
+import ViewingHistory from './components/user/ViewingHistory';
+import CustomerSupportPage from './components/user/CustomerSupportPage';
+
+// 관리자 페이지
+import AdminPage from './components/admin/AdminPage';
+import AdministratorManagement from './components/admin/AdministratorManagement';
+import DistributorManagement from './components/admin/DistributorManagement';
+import NoticePage from './components/admin/NoticePage';
+import ContentUploadPage from './components/admin/ContentUploadPage';
+import ContentManagementPage from './components/admin/ContentManagementPage';
+import UserManagementPage from './components/admin/UserManagementPage';
+
+// 로그인/회원가입
 import LoginPage from './components/LoginPage';
-import FavoritesPage from './components/FavoritesPage';
-import CategoryPage from './components/CategoryPage';
-import AdministratorManagement from './components/AdministratorManagement';
-import DistributorManagement from './components/DistributorManagement';
-import NoticePage from './components/NoticePage';
-import ViewingHistory from './components/ViewingHistory';
-import ContentUploadPage from './components/ContentUploadPage';
-import ContentManagementPage from './components/ContentManagementPage';
-import AdminPage from './components/AdminPage';
-import register from './components/register'; // ✅ 소문자 import
-import CustomerSupportPage from './components/CustomerSupportPage';
-import UserManagementPage from './components/UserManagementPage';
-const Register = register;
+import Register from './components/register';
 
-const App = () => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 추가
+function App() {
+  return (
+    <Router>
+      <Routes>
 
-    const handleLogin = () => {
-        console.log("✅ 로그인 성공!");
-        setIsLoggedIn(true); // 필요 시 상태 활용 가능
-    };
+        {/* ✅ 로그인 & 회원가입 (레이아웃 없이 단독) */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<Register />} />
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/data');
-                setData(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('데이터를 가져오는 데 실패했습니다.');
-            }
-        };
+        {/* ✅ 사용자 페이지 - UserLayout으로 감싸기 */}
+        <Route path="/" element={<UserLayout />}>
+          <Route index element={<MainPage />} />
+          <Route path="favorites" element={<FavoritesPage />} />
+          <Route path="category" element={<CategoryPage />} />
+          <Route path="viewing-history" element={<ViewingHistory />} />
+          <Route path="customersupport" element={<CustomerSupportPage />} />
+        </Route>
 
-        fetchData();
-    }, []);
-
-    return (
-        <Router>
-            <div>
-                <Routes>
-                    <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
-                    <Route path="/main" element={<MainPage />} />
-                    <Route path="/favorites" element={<FavoritesPage />} />
-                    <Route path="/category" element={<CategoryPage />} />
-                    <Route path="/administrator-management" element={<AdministratorManagement />} />
-                    <Route path="/distributor-management" element={<DistributorManagement />} />
-                    <Route path="/notice" element={<NoticePage />} />
-                    <Route path="/viewing-history" element={<ViewingHistory />} />
-                    <Route path="/content-upload" element={<ContentUploadPage />} />
-                    <Route path="/content-management" element={<ContentManagementPage />} />
-                    <Route path="/admin" element={<AdminPage />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/customersupport" element={<CustomerSupportPage />} />
-                    <Route path="/userManagement" element={<UserManagementPage />} />
-                </Routes>
-            </div>
-        </Router>
-    );
-};
+        {/* ✅ 관리자 페이지 - AdminLayout으로 감싸기 */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminPage />} />
+          <Route path="administrator" element={<AdministratorManagement />} />
+          <Route path="distributor" element={<DistributorManagement />} />
+          <Route path="notice" element={<NoticePage />} />
+          <Route path="upload" element={<ContentUploadPage />} />
+          <Route path="manage" element={<ContentManagementPage />} />
+          <Route path="users" element={<UserManagementPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;

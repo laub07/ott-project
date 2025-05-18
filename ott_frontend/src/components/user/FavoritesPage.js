@@ -146,12 +146,11 @@ const Favorites = () => {
                                     return (
                                         <div key={index} className="video-item">
                                             {isImage && (
-                                                <img
-                                                    src={video.url}
-                                                    alt={video.title}
-                                                    className="thumbnail-img"
-                                                    style={{ width: '180px', height: '260px', objectFit: 'cover' }}
-                                                />
+                                              <img
+                                                src={video.url}
+                                                alt={video.title}
+                                                className="thumbnail-img"
+                                              />
                                             )}
                                             <div className="video-title">{video.title}</div>
                                         </div>
@@ -165,5 +164,6 @@ const Favorites = () => {
         </div>
     );
 };
+
 
 export default Favorites;
