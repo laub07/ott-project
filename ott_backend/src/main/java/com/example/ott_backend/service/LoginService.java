@@ -25,11 +25,11 @@ public class LoginService {
 
 
         if (adminRepository.findByAdminIdAndPassword(id, password).isPresent()) {
-            return new LoginResponse("로그인 성공", "","ADMIN");
+            return new LoginResponse("로그인 성공", "token","ADMIN");
         }
 
         if (userRepository.findByUserIdAndPassword(id, password).isPresent()) {
-            return new LoginResponse("로그인 성공", "","USER");
+            return new LoginResponse("로그인 성공", "token","USER");
         }
 
        // throw new IllegalArgumentException("아이디 또는 비밀번호가 일치하지 않습니다.");

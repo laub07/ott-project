@@ -1,15 +1,14 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const PrivateRoute = ({ authenticated, component: Component }) => {
-    const location = useLocation();
+export default function PrivateRoute({ userAuthentication }) {
+    const token = sessionStorage.getItem('Authorization');
+    const isLogin = !!token;
 
-    if (!authenticated) {
-        window.alert("로그인이 필요합니다.");
-        return <Navigate to="/login" state={{ from: location }} replace />;
+    if (userAuthentication) {
+        return isLogin ? <Outlet /> : <Navigate to="/login" replace />;
+    } else {
+        return !isLogin ? <Outlet /> : <Navigate to="/" replace />;
     }
+}
 
-    return Component;
-};
-
-export default PrivateRoute;

@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React from 'react';
 import PrivateRoute from './components/PrivateRoute';
+import { Navigate } from 'react-router-dom';
 
-// Layout 컴포넌트
+// 레이아웃
 import UserLayout from './components/user/UserLayout';
 import AdminLayout from './components/admin/AdminLayout';
 
@@ -27,40 +28,41 @@ import LoginPage from './components/LoginPage';
 import Register from './components/register';
 
 function App() {
-  const token = sessionStorage.getItem("Authorization"); // ✅ 로그인 여부 확인
+  const [token, setToken] = useState(null);
 
   return (
       <Router>
         <Routes>
-
-          {/* 로그인 & 회원가입은 로그인 없이 접근 가능 */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
-
-          {/* 사용자 페이지 - 로그인된 경우에만 UserLayout 사용 */}
-          <Route path="/" element={
-            <PrivateRoute authenticated={!!token} component={<UserLayout />} />
-          }>
-            <Route index element={<MainPage />} />
-            <Route path="favorites" element={<FavoritesPage />} />
-            <Route path="category" element={<CategoryPage />} />
-            <Route path="viewing-history" element={<ViewingHistory />} />
-            <Route path="customersupport" element={<CustomerSupportPage />} />
+          {/* 로그인/회원가입 (비로그인 상태에서만 접근 가능) */}
+          <Route element={<PrivateRoute userAuthentication={false} />}>
+            <Route path="/login" element={<LoginPage setToken={setToken} />} />
+            <Route path="/register" element={<Register />} />
           </Route>
 
-          {/* 관리자 페이지 - 로그인된 경우에만 AdminLayout 사용 */}
-          <Route path="/admin" element={
-            <PrivateRoute authenticated={!!token} component={<AdminLayout />} />
-          }>
-            <Route index element={<AdminPage />} />
-            <Route path="administrator" element={<AdministratorManagement />} />
-            <Route path="distributor" element={<DistributorManagement />} />
-            <Route path="notice" element={<NoticePage />} />
-            <Route path="upload" element={<ContentUploadPage />} />
-            <Route path="manage" element={<ContentManagementPage />} />
-            <Route path="users" element={<UserManagementPage />} />
+
+          {/* 사용자 페이지 (로그인 상태면 누구든 접근 가능) */}
+          <Route element={<PrivateRoute userAuthentication={true} />}>
+            <Route path="/" element={<UserLayout />}>
+              <Route index element={<MainPage />} />
+              <Route path="favorites" element={<FavoritesPage />} />
+              <Route path="category" element={<CategoryPage />} />
+              <Route path="viewing-history" element={<ViewingHistory />} />
+              <Route path="customersupport" element={<CustomerSupportPage />} />
+            </Route>
           </Route>
 
+          {/* 관리자 전용 페이지 (관리자만 접근 가능) */}
+          <Route element={<PrivateRoute userAuthentication={true} />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminPage />} />
+              <Route path="administrator" element={<AdministratorManagement />} />
+              <Route path="distributor" element={<DistributorManagement />} />
+              <Route path="notice" element={<NoticePage />} />
+              <Route path="upload" element={<ContentUploadPage />} />
+              <Route path="manage" element={<ContentManagementPage />} />
+              <Route path="users" element={<UserManagementPage />} />
+            </Route>
+          </Route>
         </Routes>
       </Router>
   );

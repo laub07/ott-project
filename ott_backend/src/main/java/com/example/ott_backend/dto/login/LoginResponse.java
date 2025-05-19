@@ -9,8 +9,8 @@ public class LoginResponse {
     public LoginResponse(String message, String token, String role) {
         this.message = message;
         this.token = token;
-        this.success = true;
         this.role = role;
+        this.success = (token != null && !token.isEmpty());
     }
 
     public String getMessage() {
