@@ -15,16 +15,15 @@ function LoginPage() {
     const response = await loginUser(username, password);
 
     if (response.success) {
-      // 토큰 저장 (필요 시)
-      localStorage.setItem('token', response.token);
+      sessionStorage.setItem('Authorization', response.token);
 
-      // 역할에 따라 페이지 분기
       if (response.role === 'ADMIN') {
-        navigate('/admin');
+        window.location.href = '/admin';
       } else {
-        navigate('/');
+        window.location.href = '/';
       }
-    } else {
+    }
+    else {
       setError(response.message || '로그인 실패');
     }
   };

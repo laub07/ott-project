@@ -59,7 +59,7 @@ const AdminLayout = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('Authorization');
     alert('로그아웃 되었습니다.');
     navigate('/login');
   };

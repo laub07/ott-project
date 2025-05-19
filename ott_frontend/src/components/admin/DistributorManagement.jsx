@@ -1,4 +1,4 @@
-// src/components/admin/DistributorManagement.js
+// src/components/admin/DistributorManagement.jsx
 import React, { useState, useEffect } from 'react';
 import './DistributorManagement.css';
 

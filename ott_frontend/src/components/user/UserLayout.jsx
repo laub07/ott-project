@@ -40,9 +40,8 @@ const UserLayout = () => {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('Authorization');
     alert("로그아웃 되었습니다.");
-    setShowProfileMenu(false); // ✅ 로그아웃 시 드롭다운 닫기
     navigate('/login');
   };
 

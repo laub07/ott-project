@@ -1,4 +1,4 @@
-// src/components/admin/AdminPage.js
+// src/components/admin/AdminPage.jsx
 
 import React from 'react';
 import './AdminPage.css';

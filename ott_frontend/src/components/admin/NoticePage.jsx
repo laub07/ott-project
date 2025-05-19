@@ -1,4 +1,4 @@
-// src/components/admin/NoticePage.js
+// src/components/admin/NoticePage.jsx
 import React, { useState } from 'react';
 import './NoticePage.css';
 
