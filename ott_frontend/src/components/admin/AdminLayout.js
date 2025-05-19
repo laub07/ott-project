@@ -12,8 +12,9 @@ const AdminLayout = () => {
 
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
+  const profileMenuRef = useRef(null); // 드롭다운 참조
 
-  // ✅ 바깥 클릭 시 사이드바 닫기 (useEffect로 등록)
+  // 바깥 클릭 시 사이드바 또는 드롭다운 닫기
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -23,11 +24,19 @@ const AdminLayout = () => {
       ) {
         setSidebarOpen(false);
       }
+
+      if (
+        showProfileMenu &&
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(e.target)
+      ) {
+        setShowProfileMenu(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [sidebarOpen]);
+  }, [sidebarOpen, showProfileMenu]);
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
@@ -44,6 +53,11 @@ const AdminLayout = () => {
     }));
   };
 
+  const navigateAndClose = (path) => {
+    navigate(path);
+    setSidebarOpen(false);
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     alert('로그아웃 되었습니다.');
@@ -52,7 +66,6 @@ const AdminLayout = () => {
 
   return (
     <div className={`app-container ${sidebarOpen ? 'sidebar-open' : ''}`}>
-      {/* ✅ 헤더 */}
       <header>
         <div className="container">
           <button className="menu-button" onClick={toggleSidebar}>☰</button>
@@ -67,7 +80,10 @@ const AdminLayout = () => {
                 <img src="/images/프로필 사진.png" alt="프로필" className="profile-image" />
                 <a href="#">프로필 관리</a>
                 {showProfileMenu && (
-                  <div className="profile-dropdown" onClick={(e) => e.stopPropagation()}>
+                  <div
+                    className="profile-dropdown"
+                    ref={profileMenuRef} // ✅ 드롭다운 ref 연결
+                  >
                     <div className="profile-info">
                       <img src="/images/프로필 사진.png" alt="프로필" />
                       <div>
@@ -77,9 +93,12 @@ const AdminLayout = () => {
                     </div>
                     <hr />
                     <ul>
-                      <li>MY</li>
-                      <li>고객문의</li>
-                      <li onClick={logout}>로그아웃</li>
+                      <li onClick={() => setShowProfileMenu(false)}>MY</li>
+                      <li onClick={() => setShowProfileMenu(false)}>고객문의</li>
+                      <li onClick={() => {
+                        setShowProfileMenu(false);
+                        logout();
+                      }}>로그아웃</li>
                     </ul>
                   </div>
                 )}
@@ -97,22 +116,20 @@ const AdminLayout = () => {
       >
         <button className="close-button" onClick={toggleSidebar}>×</button>
         <ul>
-          <li><a href="#">| 내 정보 수정</a></li>
+          <li><a onClick={() => setSidebarOpen(false)}>| 내 정보 수정</a></li>
           <li onClick={() => toggleSubmenu('managePage')}>
             <a href="#">| 관리 페이지</a>
           </li>
           <div className={`genres ${showSubmenus.managePage ? 'show' : ''}`}>
             <ul>
-              <li><Link to="/admin/users"> ㄴ 사용자 관리</Link></li>
-              <li><Link to="/admin/administrator"> ㄴ 관리자 관리</Link></li>
-              <li><Link to="/admin/distributor"> ㄴ 배포자 관리</Link></li>
-              <li><a href="#"> ㄴ 장르 관리</a></li>
+              <li><a onClick={() => navigateAndClose("/admin/users")}> ㄴ 사용자 관리</a></li>
+              <li><a onClick={() => navigateAndClose("/admin/administrator")}> ㄴ 관리자 관리</a></li>
+              <li><a onClick={() => navigateAndClose("/admin/distributor")}> ㄴ 배포자 관리</a></li>
+              <li><a onClick={() => setSidebarOpen(false)}> ㄴ 장르 관리</a></li>
             </ul>
           </div>
-
           <hr width="85%" align="center" />
-
-          <li onClick={() => toggleSubmenu('customerSupport')}>
+          <li onClick={() => navigateAndClose('customerSupport')}>
             <a href="#">| 고객지원</a>
           </li>
           <div className={`genres ${showSubmenus.customerSupport ? 'show' : ''}`}>
@@ -121,9 +138,8 @@ const AdminLayout = () => {
               <li><a href="#"> ㄴ 버그 신고</a></li>
             </ul>
           </div>
-
           <hr width="85%" align="center" />
-          <li><a href="/admin/notice">| 공지사항</a></li>
+          <li><a onClick={() => navigateAndClose('/admin/notice')}>| 공지사항</a></li>
         </ul>
       </div>
 

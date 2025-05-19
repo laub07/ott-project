@@ -30,11 +30,11 @@ function App() {
     <Router>
       <Routes>
 
-        {/* ✅ 로그인 & 회원가입 (레이아웃 없이 단독) */}
+        {/* 로그인 & 회원가입 (레이아웃 없이 단독) */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
 
-        {/* ✅ 사용자 페이지 - UserLayout으로 감싸기 */}
+        {/* 사용자 페이지 - UserLayout으로 감싸기 */}
         <Route path="/" element={<UserLayout />}>
           <Route index element={<MainPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
@@ -43,7 +43,7 @@ function App() {
           <Route path="customersupport" element={<CustomerSupportPage />} />
         </Route>
 
-        {/* ✅ 관리자 페이지 - AdminLayout으로 감싸기 */}
+        {/* 관리자 페이지 - AdminLayout으로 감싸기 */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminPage />} />
           <Route path="administrator" element={<AdministratorManagement />} />

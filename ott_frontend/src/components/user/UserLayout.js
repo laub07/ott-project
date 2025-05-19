@@ -1,5 +1,4 @@
-// src/components/user/UserLayout.jsx
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import './UserLayout.css';
 
@@ -9,13 +8,22 @@ const UserLayout = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
+  const profileMenuRef = useRef(null); //  프로필 드롭다운 참조
 
-  // 바깥 클릭 시 사이드바 닫기
-  const handleOutsideClick = (e) => {
-    if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
-      setSidebarOpen(false);
-    }
-  };
+  // 바깥 클릭 시 사이드바와 드롭다운 모두 닫기
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (sidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        setSidebarOpen(false);
+      }
+      if (showProfileMenu && profileMenuRef.current && !profileMenuRef.current.contains(e.target)) {
+        setShowProfileMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [sidebarOpen, showProfileMenu]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -26,18 +34,21 @@ const UserLayout = () => {
     setShowProfileMenu(prev => !prev);
   };
 
+  const navigateAndClose = (path) => {
+    navigate(path);
+    setSidebarOpen(false);
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     alert("로그아웃 되었습니다.");
+    setShowProfileMenu(false); // ✅ 로그아웃 시 드롭다운 닫기
     navigate('/login');
   };
 
   return (
-    <div
-      className={`app-container ${sidebarOpen ? 'sidebar-open' : ''}`}
-      onClick={handleOutsideClick}
-    >
-      {/* ✅ 헤더 */}
+    <div className={`app-container ${sidebarOpen ? 'sidebar-open' : ''}`}>
+      {/* 헤더 */}
       <header>
         <div className="container">
           <button className="menu-button" onClick={toggleSidebar}>☰</button>
@@ -54,7 +65,7 @@ const UserLayout = () => {
                 {showProfileMenu && (
                   <div
                     className="profile-dropdown"
-                    onClick={(e) => e.stopPropagation()}
+                    ref={profileMenuRef} // ✅ 드롭다운 ref 설정
                   >
                     <div className="profile-info">
                       <img src="/images/프로필 사진.png" alt="프로필" />
@@ -65,8 +76,8 @@ const UserLayout = () => {
                     </div>
                     <hr />
                     <ul>
-                      <li>MY</li>
-                      <li>고객센터</li>
+                      <li onClick={() => setShowProfileMenu(false)}>MY</li>
+                      <li onClick={() => setShowProfileMenu(false)}>고객센터</li>
                       <li onClick={logout}>로그아웃</li>
                     </ul>
                   </div>
@@ -77,33 +88,32 @@ const UserLayout = () => {
         </div>
       </header>
 
-      {/* ✅ 사이드바 (ref 연결) */}
+      {/* 사이드바 */}
       <div
         className={`sidebar ${sidebarOpen ? 'open' : ''}`}
         ref={sidebarRef}
-        onClick={(e) => e.stopPropagation()}
       >
         <button className="close-button" onClick={toggleSidebar}>×</button>
         <ul>
-          <li><Link to="/viewing-history">|　시청기록</Link></li>
-          <li><Link to="/favorites">|　즐겨찾기 콘텐츠</Link></li>
-          <li><Link to="/category">|　카테고리별 모아보기</Link></li>
+          <li><a onClick={() => navigateAndClose('/viewing-history')}>|　시청기록</a></li>
+          <li><a onClick={() => navigateAndClose('/favorites')}>|　즐겨찾기 콘텐츠</a></li>
+          <li><a onClick={() => navigateAndClose('/category')}>|　카테고리별 모아보기</a></li>
           <div className={`genres ${showGenres ? 'show' : ''}`}>
             <ul>
-              <li><a href="#">　　ㄴ 영화</a></li>
-              <li><a href="#">　　ㄴ 드라마</a></li>
-              <li><a href="#">　　ㄴ 애니메이션</a></li>
-              <li><a href="#">　　ㄴ 스릴러</a></li>
-              <li><a href="#">　　ㄴ 로맨스</a></li>
-              <li><a href="#">　　ㄴ 액션</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 영화</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 드라마</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 애니메이션</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 스릴러</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 로맨스</a></li>
+              <li><a onClick={() => navigateAndClose('#')}>　　ㄴ 액션</a></li>
             </ul>
           </div>
           <hr width="85%" align="center" />
-          <li><a href="#">|　설정</a></li>
+          <li><a onClick={() => navigateAndClose('#')}>|　설정</a></li>
         </ul>
       </div>
 
-      {/* ✅ 본문 영역 */}
+      {/* 본문 */}
       <main style={{ marginTop: '120px' }}>
         <Outlet />
       </main>
