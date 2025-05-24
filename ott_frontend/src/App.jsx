@@ -52,7 +52,7 @@ function App() {
           </Route>
 
           {/* 관리자 전용 페이지 (관리자만 접근 가능) */}
-          <Route element={<PrivateRoute userAuthentication={true} />}>
+          <Route element={<PrivateRoute userAuthentication={true} adminOnly={true} />}>
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminPage />} />
               <Route path="administrator" element={<AdministratorManagement />} />
