@@ -54,13 +54,13 @@ const UserLayout = () => {
           <img src="/images/로고.png" alt="로고" title="로고" />
           <nav>
             <ul>
-              <li className="active"><Link to="/">홈</Link></li>
-              <li><a href="#">검색</a></li>
+              <li><Link to="/">홈</Link></li>
+              <li><Link to="/search">검색</Link></li>
               <li><Link to="/customersupport">고객지원</Link></li>
               <li><a href="#">|</a></li>
               <li className="profile" onClick={toggleProfileMenu}>
                 <img src="/images/프로필 사진.png" alt="프로필" className="profile-image" />
-                <a href="#">프로필 관리</a>
+                <a href="#">사용자 1</a>
                 {showProfileMenu && (
                   <div
                     className="profile-dropdown"

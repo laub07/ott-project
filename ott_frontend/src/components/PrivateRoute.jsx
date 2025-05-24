@@ -26,3 +26,6 @@ export default function PrivateRoute({ userAuthentication = true, adminOnly = fa
 
     return <Outlet />;
 }
+
+
+

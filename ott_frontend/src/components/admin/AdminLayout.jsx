@@ -72,13 +72,13 @@ const AdminLayout = () => {
           <img src="/images/로고.png" alt="로고" title="로고" />
           <nav>
             <ul>
-              <li className="active"><a href="/admin">홈</a></li>
+              <li><a href="/admin">홈</a></li>
               <li><a href="#">검색</a></li>
               <li><a href="#">고객지원</a></li>
               <li><a href="#">|</a></li>
               <li className="profile" onClick={toggleProfileMenu}>
                 <img src="/images/프로필 사진.png" alt="프로필" className="profile-image" />
-                <a href="#">프로필 관리</a>
+                <a href="#">관리자 1</a>
                 {showProfileMenu && (
                   <div
                     className="profile-dropdown"

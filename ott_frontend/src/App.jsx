@@ -13,6 +13,7 @@ import FavoritesPage from './components/user/FavoritesPage';
 import CategoryPage from './components/user/CategoryPage';
 import ViewingHistory from './components/user/ViewingHistory';
 import CustomerSupportPage from './components/user/CustomerSupportPage';
+import SearchPage from './components/user/SearchPage'
 
 // 관리자 페이지
 import AdminPage from './components/admin/AdminPage';
@@ -48,6 +49,7 @@ function App() {
               <Route path="category" element={<CategoryPage />} />
               <Route path="viewing-history" element={<ViewingHistory />} />
               <Route path="customersupport" element={<CustomerSupportPage />} />
+              <Route path="search" element={<SearchPage />} />
             </Route>
           </Route>
 
