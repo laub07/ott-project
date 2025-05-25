@@ -14,6 +14,7 @@ import CategoryPage from './components/user/CategoryPage';
 import ViewingHistory from './components/user/ViewingHistory';
 import CustomerSupportPage from './components/user/CustomerSupportPage';
 import SearchPage from './components/user/SearchPage'
+import DetailPage from './components/user/DetailPage';
 
 // 관리자 페이지
 import AdminPage from './components/admin/AdminPage';
@@ -24,7 +25,8 @@ import ContentUploadPage from './components/admin/ContentUploadPage';
 import ContentManagementPage from './components/admin/ContentManagementPage';
 import UserManagementPage from './components/admin/UserManagementPage';
 
-// 로그인/회원가입
+
+// 로그인/회원가입 그 외
 import LoginPage from './components/LoginPage';
 import Register from './components/register';
 
@@ -41,6 +43,9 @@ function App() {
           </Route>
 
 
+
+
+
           {/* 사용자 페이지 (로그인 상태면 누구든 접근 가능) */}
           <Route element={<PrivateRoute userAuthentication={true} />}>
             <Route path="/" element={<UserLayout />}>
@@ -50,6 +55,7 @@ function App() {
               <Route path="viewing-history" element={<ViewingHistory />} />
               <Route path="customersupport" element={<CustomerSupportPage />} />
               <Route path="search" element={<SearchPage />} />
+              <Route path="/detail/:type/:id" element={<DetailPage />} />
             </Route>
           </Route>
 

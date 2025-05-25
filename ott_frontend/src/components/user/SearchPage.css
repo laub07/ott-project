@@ -1,61 +1,87 @@
 .search-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #fdfdfd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-}
-
-.search-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
     color: #333;
+    background-color: #ffffff; /* ✅ 흰색 배경 */
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .search-bar {
+    width: 100%;
+    max-width: 600px;
     display: flex;
     justify-content: center;
-    gap: 10px; /* 검색창과 버튼 사이 간격 */
-    margin-bottom: 1.5rem;
+    gap: 10px;
+    margin-bottom: 2rem;
 }
 
 .search-bar input {
-    width: 60%;
+    flex: 1;
     padding: 0.6rem 1rem;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .search-bar button {
     padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    background-color: #6c63ff;
+    background-color: #3d5afe;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
-
 
 .search-bar button:hover {
-    background-color: #574bff;
+    background-color: #304ffe;
 }
 
-.search-results ul {
-    list-style: none;
-    padding: 0;
+.search-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #444;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    color: #111;
 }
 
-.search-results li {
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid #ddd;
-    font-size: 1.1rem;
+.card-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 0 1rem;
+    justify-items: center;
 }
 
-.search-results li:last-child {
-    border-bottom: none;
+.card {
+    padding: 0.8rem;
+    text-align: center;
+    transition: transform 0.2s;
+    width: 100%;
+    max-width: 200px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: #0a0a0a;
 }

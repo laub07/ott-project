@@ -51,7 +51,9 @@ const UserLayout = () => {
       <header>
         <div className="container">
           <button className="menu-button" onClick={toggleSidebar}>☰</button>
-          <img src="/images/로고.png" alt="로고" title="로고" />
+          <Link to="/">
+            <img src="/images/로고.png" alt="로고" title="로고" style={{ cursor: 'pointer' }} />
+          </Link>
           <nav>
             <ul>
               <li><Link to="/">홈</Link></li>

@@ -1,25 +1,21 @@
-// src/components/admin/AdminPage.jsx
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AdminPage.css';
 
+const API_KEY = '2f5c97cc40ba5af58ab61f419406164e';
+const BASE_URL = 'https://api.themoviedb.org/3';
+
 function AdminPage() {
-    const top20Images = [
-        "/images/drama/선재업고튀어.webp",
-        "/images/drama/폭싹 속았수다.webp",
-        "/images/drama/옥씨부인전.webp",
-        "/images/drama/겟마을 차차차.webp",
-        "/images/drama/시그널.webp",
-        "/images/movie/파묘.jpg",
-        "/images/entertainment/환승연애2.jpg",
-        "/images/entertainment/하트시그널.webp",
-        "/images/drama/신병.jpg",
-        "/images/drama/중증외상센터.jpg",
-        "/images/drama/여신강림.jpg",
-        "/images/drama/남자친구.jpg",
-        "/images/drama/오 나의 귀신님.jpg",
-        "/images/drama/슬기로운 의사생활.webp"
-    ];
+    const [topContents, setTopContents] = useState([]);
+
+    useEffect(() => {
+        fetch(`${BASE_URL}/trending/all/day?api_key=${API_KEY}&language=ko-KR`)
+            .then(res => res.json())
+            .then(data => {
+                const filtered = data.results.filter(item => item.poster_path); // 포스터가 있는 것만
+                setTopContents(filtered.slice(0, 14)); // 14개까지만
+            })
+            .catch(console.error);
+    }, []);
 
     return (
         <div className="admin-main-content">
@@ -27,10 +23,14 @@ function AdminPage() {
                 <h3>최근에 업로드한 영상</h3>
                 <hr width="82%" align="left" />
                 <div className="video-list-scroll">
-                    {top20Images.map((src, index) => (
+                    {topContents.map((item, index) => (
                         <div className="video-item" key={index}>
                             <div className="video-thumb">
-                                <img src={src} alt={`ott 사진 ${index + 1}`} />
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                                    alt={item.title || item.name}
+                                    title={item.title || item.name}
+                                />
                             </div>
                         </div>
                     ))}
