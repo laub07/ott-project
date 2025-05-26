@@ -53,7 +53,9 @@ function SearchPage() {
                     if (type !== 'movie' && type !== 'tv') return null;
 
                     return (
-                        <Link to={`/detail/${type}/${id}`} key={index} className="card">
+                        <Link to={`/detail/${type}/${id}`} key={index} className="card"
+                              style={{ textDecoration: 'none', color: 'inherit' }}
+                        >
                             <img src={poster} alt={title} />
                             <p>{title}</p>
                         </Link>

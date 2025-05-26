@@ -1,5 +1,8 @@
 package com.example.ott_backend.dto.login;
 
+import lombok.Getter;
+
+@Getter
 public class LoginResponse {
     private boolean success;
     private String message;
@@ -11,21 +14,5 @@ public class LoginResponse {
         this.token = token;
         this.role = role;
         this.success = (token != null && !token.isEmpty());
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public String getRole() {
-        return role;
     }
 }

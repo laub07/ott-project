@@ -1,5 +1,8 @@
 package com.example.ott_backend.dto.admin;
 
+import lombok.Getter;
+
+@Getter
 public class AdminResponse {
     private Long id;
     private String adminId;
@@ -11,15 +14,4 @@ public class AdminResponse {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getAdminId() {
-      return adminId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 }

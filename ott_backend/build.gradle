@@ -26,6 +26,10 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java:8.0.33' // ✅ 한 줄로 통일
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 }
 
 tasks.named('test') {

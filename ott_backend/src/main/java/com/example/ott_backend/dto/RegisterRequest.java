@@ -1,5 +1,8 @@
 package com.example.ott_backend.dto;
 
+import lombok.Getter;
+
+@Getter
 public class RegisterRequest {
     private String userId;
     private String adminId;
@@ -9,33 +12,6 @@ public class RegisterRequest {
     private String phone;
     private String role;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getAdminId() {
-        return adminId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPasswordconfirm() {
-        return passwordconfirm;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
 }
 
 
