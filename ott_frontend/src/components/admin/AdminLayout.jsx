@@ -127,8 +127,6 @@ const AdminLayout = () => {
             <ul>
               <li><a onClick={() => navigateAndClose("/admin/users")}> ㄴ 사용자 관리</a></li>
               <li><a onClick={() => navigateAndClose("/admin/administrator")}> ㄴ 관리자 관리</a></li>
-              <li><a onClick={() => navigateAndClose("/admin/distributor")}> ㄴ 배포자 관리</a></li>
-              <li><a onClick={() => setSidebarOpen(false)}> ㄴ 장르 관리</a></li>
             </ul>
           </div>
           <hr width="85%" align="center" />
