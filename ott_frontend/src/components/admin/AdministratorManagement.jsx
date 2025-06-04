@@ -84,7 +84,6 @@ function AdministratorManagement() {
 
     return (
         <>
-            {/* 생략된 헤더와 사이드바 */}
             <div className="admin-management">
                 <h1>관리자 관리 페이지</h1>
                 <div className="search-container">
